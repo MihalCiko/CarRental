@@ -3,6 +3,8 @@ package com.mcode.carrental.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -13,6 +15,9 @@ public class CarsEntities {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "car_id", unique = true)
     private Long carId;
+
+    @OneToMany(mappedBy = "cars", fetch = FetchType.LAZY)
+    private List<RentEntities> rentEntities = new ArrayList<>();
 
     @Column(name = "car_name")
     private String carName;
